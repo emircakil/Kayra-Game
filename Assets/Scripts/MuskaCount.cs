@@ -11,7 +11,7 @@ public class MuskaCount : MonoBehaviour
     public void increaseMuskaCount() {
 
         muskaCount++;
-        muskaText.text = "Muska Sayisi: "+ muskaCount.ToString(); 
+        muskaText.text =  muskaCount.ToString(); 
     }
 
     public void decreaseMuskaCount()
@@ -19,7 +19,7 @@ public class MuskaCount : MonoBehaviour
         if (muskaCount > 0)
         {
             muskaCount--;
-            muskaText.text = "Muska Sayisi: " + muskaCount.ToString();
+            muskaText.text = muskaCount.ToString();
         }
         else {
 
