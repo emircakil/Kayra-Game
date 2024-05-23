@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour, IInteractable
 {
+    [SerializeField] GameObject muskaManager;
+    MuskaCount muskaCount;
+
+    private void Awake()
+    {
+        muskaCount = muskaManager.GetComponent<MuskaCount>();
+    }
+
     public string GetDescription()
     {
         return "Muskayi al";
     }
 
     public void Interact()
-    {
+    {   
+        muskaCount.increaseMuskaCount();
         Destroy(gameObject);
     }
 }

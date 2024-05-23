@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     Camera mainCam;
-    public float interactionDistance = 2f;
+    public float interactionDistance = 5f;
 
     public GameObject interactionUI;
     public TextMeshProUGUI interactionText;
