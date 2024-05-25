@@ -6,15 +6,16 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    Camera mainCam;
-    public float interactionDistance = 5f;
+    public Camera mainCam;
+    public float interactionDistance = 1f;
 
     public GameObject interactionUI;
     public TextMeshProUGUI interactionText;
+    private RaycastHit[] hits = new RaycastHit[8];
+
     private void Awake()
     {
         mainCam = this.gameObject.GetComponentInChildren<Camera>();
-
     }
 
     private void Update()
@@ -22,25 +23,31 @@ public class PlayerInteraction : MonoBehaviour
         InteractionRay();
     }
 
-    void InteractionRay() {
+    void InteractionRay()
+    {
 
         Ray ray = mainCam.ViewportPointToRay(Vector3.one / 2f);
-        RaycastHit hit;
+
+        int hitCount = Physics.RaycastNonAlloc(ray, hits, interactionDistance);
 
         bool hitSomething = false;
 
-        if (Physics.Raycast(ray, out hit, interactionDistance)) { 
-        
+        for (int i = 0; i < hitCount; i++)
+        {
+            RaycastHit hit = hits[i];
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
 
-            if (interactable != null) {
+            if (interactable != null)
+            {
+                if (hit.collider.tag == "Interact")
+                {
+                    hitSomething = true;
+                    interactionText.text = interactable.GetDescription();
 
-                hitSomething = true;
-                interactionText.text = interactable.GetDescription();
-
-                if (Input.GetKeyDown(KeyCode.E)) { 
-                
-                    interactable.Interact();
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        interactable.Interact();
+                    }
                 }
             }
         }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +7,7 @@ public class KillWMuska : MonoBehaviour, IInteractable
     [SerializeField] GameObject muskaManager;
     MuskaCount muskaCount;
     [SerializeField]ParticleSystem monsterParticleSystem;
+    public GameObject monster;
 
     private void Awake()
     {
@@ -15,13 +16,12 @@ public class KillWMuska : MonoBehaviour, IInteractable
 
     public string GetDescription()
     {
-        return "Hortlagi Oldur";
+        return "Hortlağı Öldur";
     }
 
     public void Interact()
     {
 
-        
 
         if (muskaCount.checkMuskaCount())
         {
@@ -29,7 +29,7 @@ public class KillWMuska : MonoBehaviour, IInteractable
             monsterParticleSystem.transform.position = this.gameObject.transform.position;
             monsterParticleSystem.gameObject.SetActive(true);
             monsterParticleSystem.Play();
-            Destroy(this.gameObject);
+            Destroy(monster);
 
 
         }

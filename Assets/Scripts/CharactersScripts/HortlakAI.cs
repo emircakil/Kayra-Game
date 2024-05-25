@@ -62,7 +62,7 @@ public class HortlakAI : MonoBehaviour
 
     void Chase() {
 
-        float dis = Vector3.Distance(this.gameObject.transform.position, playerObj.transform.position);
+        float dis = Vector3.Distance(this.gameObject.transform.position, playerObj.position);
 
 
         Vector3 direction = this.transform.position - playerObj.transform.position;
@@ -106,13 +106,7 @@ public class HortlakAI : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
         }
-        if(isRangePlayer)
-        {
-
-            Vector3 direction = (playerObj.transform.position - transform.position).normalized;
-            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
-        }
+       
     }
 
     void increaseTarget() {
