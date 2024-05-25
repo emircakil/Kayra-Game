@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0.19
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.41960785, g: 0.45996258, b: 0.627451, a: 1}
+  m_SubtractiveShadowColor: {r: 0.40201494, g: 0.45218655, b: 0.6679245, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 374923073dfc6e146b6eb29c169498db, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -3871,7 +3871,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.90188676, g: 0.16846557, b: 0.16846557, a: 1}
+  m_Color: {r: 0.87169814, g: 0.47861156, b: 0.47861156, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -26715,12 +26715,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 311958762290577354, guid: c12322f9f9cf7e543bfa19def67a49c6, type: 3}
+      propertyPath: m_Range
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 311958762290577354, guid: c12322f9f9cf7e543bfa19def67a49c6, type: 3}
       propertyPath: m_Intensity
-      value: 10
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 311958762290577354, guid: c12322f9f9cf7e543bfa19def67a49c6, type: 3}
+      propertyPath: m_SpotAngle
+      value: 98.74802
       objectReference: {fileID: 0}
     - target: {fileID: 311958762290577354, guid: c12322f9f9cf7e543bfa19def67a49c6, type: 3}
       propertyPath: m_Lightmapping
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 311958762290577354, guid: c12322f9f9cf7e543bfa19def67a49c6, type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 50.069923
       objectReference: {fileID: 0}
     - target: {fileID: 335822871713674578, guid: c12322f9f9cf7e543bfa19def67a49c6, type: 3}
       propertyPath: m_Lightmapping
@@ -26732,15 +26744,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4821817128507565242, guid: c12322f9f9cf7e543bfa19def67a49c6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4821817128507565242, guid: c12322f9f9cf7e543bfa19def67a49c6, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4821817128507565242, guid: c12322f9f9cf7e543bfa19def67a49c6, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4821817128507565242, guid: c12322f9f9cf7e543bfa19def67a49c6, type: 3}
       propertyPath: m_LocalPosition.x
