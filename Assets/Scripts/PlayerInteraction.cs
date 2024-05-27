@@ -25,16 +25,14 @@ public class PlayerInteraction : MonoBehaviour
 
     void InteractionRay()
     {
-
         Ray ray = mainCam.ViewportPointToRay(Vector3.one / 2f);
 
-        int hitCount = Physics.RaycastNonAlloc(ray, hits, interactionDistance);
+        RaycastHit[] hits = Physics.RaycastAll(ray);
 
         bool hitSomething = false;
 
-        for (int i = 0; i < hitCount; i++)
+        foreach (RaycastHit hit in hits)
         {
-            RaycastHit hit = hits[i];
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
 
             if (interactable != null)
