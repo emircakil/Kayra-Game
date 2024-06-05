@@ -6,7 +6,7 @@ public class KillWMuska : MonoBehaviour
 {
     [SerializeField] GameObject muskaManager;
     MuskaCount muskaCount;
-    [SerializeField]ParticleSystem monsterParticleSystem;
+    public ParticleSystem monsterParticleSystem;
 
 
     private void Awake()
@@ -24,10 +24,9 @@ public class KillWMuska : MonoBehaviour
                 if (muskaCount.checkMuskaCount())
                 {
                     muskaCount.decreaseMuskaCount();
-                    Vector3 posParticle = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-                    monsterParticleSystem.transform.position = posParticle;
-                    monsterParticleSystem.gameObject.SetActive(true);
-                    monsterParticleSystem.Play();
+                    Vector3 posPar = new Vector3(transform.position.x, transform.position.y +3, transform.position.z);
+                    Instantiate(monsterParticleSystem, posPar, Quaternion.LookRotation(Vector3.up));
+                    
                     Destroy(this.gameObject);
                 }
             }

@@ -7,14 +7,8 @@ public class DestroyParticles : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(waitAndDestroy());
+        Destroy(gameObject, 3f);
     }
 
-    IEnumerator waitAndDestroy() { 
-    
-        yield return new WaitForSecondsRealtime(2f);
-        this.gameObject.SetActive(false);
-
-       
-    }
+ 
 }
