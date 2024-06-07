@@ -14,12 +14,18 @@ public class HortlakAI : MonoBehaviour
     Rigidbody rb;
     bool isRangePlayer = false; // Variable for player is chasing range or not.
     int targetPoint;
+    AudioSource audioSource;
+    public AudioClip detectSound;
+    public AudioClip biteSound;
 
+    bool isPlayerRanged = false;
+    bool hasDetectPlayed = false;
 
 
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         targetPoint = 0;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
@@ -44,6 +50,12 @@ public class HortlakAI : MonoBehaviour
         {
 
             Chase();
+        }
+
+        if (isPlayerRanged && !hasDetectPlayed) {
+            hasDetectPlayed = true;
+            audioSource.clip = detectSound;
+            audioSource.Play();
         }
 
 
@@ -93,7 +105,7 @@ public class HortlakAI : MonoBehaviour
         {
             isRangePlayer = true;
             agent.speed = 4.5f;
-           
+            isPlayerRanged = true;
         }
     }
 

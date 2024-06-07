@@ -17,6 +17,10 @@ public class FPSController : MonoBehaviour
     public float lookSpeed = 2f;
     public float lookXLimit = 45f;
 
+    public AudioClip footstepsSound;
+
+    AudioSource audioSource;
+
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
 
@@ -27,10 +31,11 @@ public class FPSController : MonoBehaviour
 
      void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
+        audioSource.clip = footstepsSound;
     }
 
     private void Awake()
@@ -50,6 +55,15 @@ public class FPSController : MonoBehaviour
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
         float movementDirectionY = moveDirection.y;
 
+        if (isRunning)
+        {
+     
+            audioSource.volume = 0.4f;
+        }
+        else {
+         
+            audioSource.volume = 0.2f;
+        }
       
         float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
         float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
@@ -74,8 +88,18 @@ public class FPSController : MonoBehaviour
             moveDirection.y -= gravity * Time.deltaTime;
         }
 
-        // camera
+        
         characterController.Move(moveDirection * Time.deltaTime);
+
+        if (characterController.isGrounded && (curSpeedX != 0 || curSpeedY != 0) && !audioSource.isPlaying)
+        {
+            
+            audioSource.Play();
+        }
+        else if ((curSpeedX == 0 && curSpeedY == 0) || !characterController.isGrounded)
+        {
+            audioSource.Stop();
+        }
 
         if (canMove)
         {
@@ -97,7 +121,7 @@ public class FPSController : MonoBehaviour
         }
         else 
         {
-            characterController.height = 2f;
+            characterController.height = 1.8f;
             walkSpeed = walkSpeedTemp;
             runSpeed = runSpeedTemp;
             isCrouch = false;
