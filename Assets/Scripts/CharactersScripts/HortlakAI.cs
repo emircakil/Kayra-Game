@@ -21,7 +21,10 @@ public class HortlakAI : MonoBehaviour
     bool isPlayerRanged = false;
     bool hasDetectPlayed = false;
 
+    public AudioSource playerGrunt;
 
+    public GameObject healthManager;
+    HealthController healthController;
 
     private void Start()
     {
@@ -31,6 +34,7 @@ public class HortlakAI : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        healthController = healthManager.GetComponent<HealthController>();
     }
 
     private void Update()
@@ -72,6 +76,14 @@ public class HortlakAI : MonoBehaviour
         agent.SetDestination(patrolPoints[targetPoint].position);
     }
 
+    void AttackEvent() {
+
+        audioSource.clip = biteSound;
+        audioSource.Play();
+        playerGrunt.Play();
+        healthController.reduceHeart();
+    }
+
     void Chase() {
 
         float dis = Vector3.Distance(this.gameObject.transform.position, playerObj.position);
@@ -87,6 +99,7 @@ public class HortlakAI : MonoBehaviour
         if (dis <= 2.5f)
         {
             anim.SetBool("isAttackRange", true);
+            
          
         }
         else
